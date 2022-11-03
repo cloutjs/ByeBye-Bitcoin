@@ -9,6 +9,11 @@ import random
 threads = 0
 checked = 0
 
+useproxys = True
+
+with open("configs.txt", "r") as cfgs:
+    useproxys = bool(cfgs.read())
+
 try:
     threads = int(input("How many threads do you want to use?: "))
 except Exception:
@@ -33,7 +38,10 @@ def process():
         os.system(f"title Bye Bye Bitcoin // Checked Wallets: {checked} // by clout")
         headers = CaseInsensitiveDict()
         headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36"
-        req = requests.get(url, headers=headers, proxies={f"{proxie_type}": f'{proxie_type}://' + random.choice(proxies)})
+        if useproxys:
+            req = requests.get(url, headers=headers, proxies={f"{proxie_type}": f'{proxie_type}://' + random.choice(proxies)})
+        else:
+            req = requests.get(url, headers=headers)
         soup = BeautifulSoup(req.content, 'html.parser')
         wallets = soup.find_all("tr")
         for wallet in wallets:
